@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class DummyStoreImplTest extends Specification {
 
-    def performanceIndex = 1000000
+    def performanceIndex = 1000_000
 
     def "check performance for containsKey"() {
         given:

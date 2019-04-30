@@ -1,4 +1,4 @@
-package pl.wordslides.services;
+package pl.wordslides.store;
 
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;

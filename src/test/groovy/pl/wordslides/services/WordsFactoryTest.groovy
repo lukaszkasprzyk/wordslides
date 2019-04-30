@@ -5,7 +5,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 @Unroll
-class WordFactoryTest extends Specification {
+class WordsFactoryTest extends Specification {
 
     WordsFactory underTest = new WordsFactory()
 

@@ -1,10 +1,11 @@
-package pl.wordslides.services
+package pl.wordslides.services.impl
 
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import pl.wordslides.TestContextClass
+import pl.wordslides.services.WordSlide
 import spock.lang.Specification
 
 @SpringBootTest
@@ -12,7 +13,7 @@ import spock.lang.Specification
 class WordSlideImplTest extends Specification {
 
     @Autowired
-    WordSlideComponent underTest
+    WordSlide underTest
 
     def "for empty input empty result"() {
         when:
@@ -38,18 +39,18 @@ class WordSlideImplTest extends Specification {
         result == expected
     }
 
-    def "search for long phrase not existing in store"() {
+    def "one thousand words repeated without match in store"() {
         when:
-        def result = underTest.search("A MARRY".repeat(50))
+        def result = underTest.search("A MARRY".repeat(1000))
         then:
         result.size() == 0
     }
 
-    def "search for long phrase existing in store"() {
+    def "one thousand words repeated existing in store"() {
         expect:
         def expected = ["Mary": 1]
         when:
-        def result = underTest.search("Mary ".repeat(50))
+        def result = underTest.search("Mary ".repeat(1000))
         then:
         result.size() == 1
         result == expected

@@ -3,8 +3,6 @@ package pl.wordslides.data;
 import io.vavr.collection.List;
 import lombok.*;
 
-import java.util.stream.Collectors;
-
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor

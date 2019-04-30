@@ -1,8 +1,8 @@
 package pl.wordslides;
 
 import org.springframework.context.annotation.Bean;
-import pl.wordslides.services.MockStore;
-import pl.wordslides.services.WordSlideComponent;
+import pl.wordslides.store.MockStore;
+import pl.wordslides.services.WordSlide;
 import pl.wordslides.services.WordsFactory;
 import pl.wordslides.services.impl.SlideCreatorImpl;
 import pl.wordslides.services.impl.WordSlideImpl;
@@ -18,7 +18,7 @@ public class TestContextClass {
 
     @Bean
     public SlideCreatorImpl creator() {
-        return new SlideCreatorImpl(wordsFactory());
+        return new SlideCreatorImpl();
     }
 
 
@@ -28,8 +28,8 @@ public class TestContextClass {
     }
 
     @Bean
-    public WordSlideComponent wordSlide() {
-        return new WordSlideImpl(creator(), mockStore());
+    public WordSlide wordSlide() {
+        return new WordSlideImpl(creator(), mockStore(), wordsFactory());
     }
 
 
