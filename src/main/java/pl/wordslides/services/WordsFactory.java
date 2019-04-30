@@ -1,18 +1,21 @@
 package pl.wordslides.services;
 
 import io.vavr.collection.List;
-import io.vavr.collection.Stream;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pl.wordslides.data.Word;
 
+import java.util.regex.Pattern;
+
 @Service
 public class WordsFactory {
 
+    private static final Pattern WHITE_SPACE = Pattern.compile("\\s+");
+
     public List<Word> getWords(String input) {
         if (StringUtils.hasText(input)) {
-            return Stream.of(input.trim().split("\\s+"))
-                    .map(Word::new).toList();
+            return List.ofAll(WHITE_SPACE.splitAsStream(input.trim())
+                    .map(Word::new));
         } else {
             return List.empty();
         }

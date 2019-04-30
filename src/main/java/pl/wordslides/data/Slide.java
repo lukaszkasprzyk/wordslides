@@ -1,14 +1,12 @@
 package pl.wordslides.data;
 
 import io.vavr.collection.List;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@EqualsAndHashCode
 @RequiredArgsConstructor
 @ToString(includeFieldNames = false)
 public class Slide {

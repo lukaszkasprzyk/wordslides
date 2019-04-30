@@ -13,7 +13,6 @@ import java.util.Set;
 @Service
 public class SlideCreatorImpl implements SlideCreator {
 
-
     private WordsFactory wordsFactory;
 
     public SlideCreatorImpl(WordsFactory wordsFactory) {
@@ -35,7 +34,7 @@ public class SlideCreatorImpl implements SlideCreator {
         slides.add(rootSlide);
         for (int sliceSize = wordList.size() - 1; sliceSize > 0; sliceSize--) {
             for (int padFromLeft = 0; padFromLeft <= wordList.size() - sliceSize; padFromLeft++) {
-                final List<Word> slice = wordList.slice(padFromLeft, sliceSize + padFromLeft);
+                final List<Word> slice = wordList.subSequence(padFromLeft, sliceSize + padFromLeft);
                 if (slice.nonEmpty()) {
                     Slide subSlide = new Slide(slice);
                     slides.add(subSlide);
