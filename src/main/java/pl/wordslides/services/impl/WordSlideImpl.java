@@ -1,8 +1,6 @@
 package pl.wordslides.services.impl;
 
 import io.vavr.collection.List;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.wordslides.data.Slide;
 import pl.wordslides.data.Word;
@@ -13,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@Slf4j
 public class WordSlideImpl implements WordSlideComponent {
 
     private final SlideCreatorImpl slideCreator;
@@ -28,12 +25,8 @@ public class WordSlideImpl implements WordSlideComponent {
     @Override
     public Map<String, Integer> search(String input) {
         Map<String, Integer> result = new HashMap<>();
-        log.error("slide create");
         final List<Slide> slides = slideCreator.create(input);
-        log.error("slide process start with " + slides.size());
-        long now = System.currentTimeMillis();
         slides.toStream().forEach(slide -> {
-            log.error("slide process:");
             final boolean visited = slide.getWords().exists(Word::isVisited);
             final String key = slide.key();
             if (!visited && store.containsKey(key)) {
@@ -42,7 +35,6 @@ public class WordSlideImpl implements WordSlideComponent {
             }
 
         });
-        log.error("slide process end with:" + (System.currentTimeMillis() - now));
         return result;
     }
 
