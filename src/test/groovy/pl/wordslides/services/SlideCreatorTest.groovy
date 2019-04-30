@@ -47,7 +47,7 @@ class SlideCreatorTest extends Specification {
         result.get(1).key() == "input"
     }
 
-    def "two words with priority check and order"() {
+    def "two words with and order"() {
         when:
         def result = underTest.create("input text")
         then:

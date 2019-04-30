@@ -32,13 +32,13 @@ public class SlideCreatorImpl implements SlideCreator {
         Slide rootSlide = new Slide(wordList);
         Set<Slide> slides = new LinkedHashSet<>();
         slides.add(rootSlide);
+
         for (int sliceSize = wordList.size() - 1; sliceSize > 0; sliceSize--) {
             for (int padFromLeft = 0; padFromLeft <= wordList.size() - sliceSize; padFromLeft++) {
                 final List<Word> slice = wordList.subSequence(padFromLeft, sliceSize + padFromLeft);
-                if (slice.nonEmpty()) {
-                    Slide subSlide = new Slide(slice);
+                Slide subSlide = new Slide(slice);
+                if (!slides.contains(subSlide))
                     slides.add(subSlide);
-                }
             }
         }
         return List.ofAll(slides);

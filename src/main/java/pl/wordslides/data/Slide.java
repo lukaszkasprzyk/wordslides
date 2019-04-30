@@ -19,6 +19,6 @@ public class Slide {
     }
 
     public String key() {
-        return this.words.map(Word::getValue).collect(Collectors.joining(" "));
+        return this.words.map(Word::getValue).mkString(" ");
     }
 }
