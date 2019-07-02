@@ -5,6 +5,8 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: "groovy"
+apply plugin: "jacoco"
+
 
 group = 'pl.wordslides'
 version = '0.0.1-SNAPSHOT'
@@ -33,4 +35,11 @@ dependencies {
 
 	testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
 	testCompile "org.spockframework:spock-spring:1.2-groovy-2.4"
+}
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
+	}
 }
